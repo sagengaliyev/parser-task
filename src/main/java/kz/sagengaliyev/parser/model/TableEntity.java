@@ -3,6 +3,7 @@ package kz.sagengaliyev.parser.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name = "TABLE_ENTITY")
 @Getter
 @Setter
+@Where(clause = "deleted=false")
 public class TableEntity {
 
     @Id
