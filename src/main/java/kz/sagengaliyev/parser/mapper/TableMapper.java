@@ -22,6 +22,5 @@ public interface TableMapper {
     TableEntity toEntity(TableCreationRequest tableCreationRequest);
 
     @Mapping(target = "name", source = "name", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "columns", source = "columns", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     TableEntity update(@MappingTarget TableEntity table, UpdateTableRequest dto);
 }

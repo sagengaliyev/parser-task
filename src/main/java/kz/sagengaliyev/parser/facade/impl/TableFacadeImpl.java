@@ -77,4 +77,19 @@ public class TableFacadeImpl implements TableFacade {
         columnService.save(updatedColumn);
         return new ProcedureReport("Колонка успешно обновлена");
     }
+
+    @Override
+    public ProcedureReport deleteTable(Long id) {
+        TableEntity deletedTable = tableService.findById(id);
+        deletedTable.setDeleted(true);
+        deletedTable.getColumns().forEach(column -> columnService.delete(column.getId()));
+        tableService.save(deletedTable);
+        return new ProcedureReport("Таблица: " + deletedTable.getName() + " успешно удалена!");
+    }
+
+    @Override
+    public ProcedureReport deleteColumn(Long id) {
+        columnService.delete(id);
+        return new ProcedureReport("Колонка с ID: " + id + " успешно удалена!");
+    }
 }

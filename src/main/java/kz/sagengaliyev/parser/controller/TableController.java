@@ -44,7 +44,7 @@ public class TableController {
     @GetMapping
     @Operation(summary = "Список таблиц")
     public ResponseEntity<PageDTO<TableDTO>> findAll(
-            @RequestParam(name = "page_size", required = false, defaultValue = "10") Integer pageSize,
+            @RequestParam(name = "page_size", required = false, defaultValue = "6") Integer pageSize,
             @RequestParam(name = "page", required = false, defaultValue = "1") Integer pageNumber
     ) {
         log.info("Отображение всех таблицы");
@@ -70,6 +70,20 @@ public class TableController {
     public ResponseEntity<ProcedureReport> update(@PathVariable Long id, @PathVariable Long columnId, @RequestBody UpdateColumnRequest dto) {
         log.info("Изменение колонки таблицы с ID: {}", id);
         return ResponseEntity.ok(tableFacade.updateColumn(id, columnId, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Удалить таблицу")
+    public ResponseEntity<ProcedureReport> deleteTable(@PathVariable Long id) {
+        log.info("Удаление таблицы с ID: {}",id);
+        return ResponseEntity.ok(tableFacade.deleteTable(id));
+    }
+
+    @DeleteMapping("/{id}/column/{columnId}")
+    @Operation(summary = "Удалить таблицу")
+    public ResponseEntity<ProcedureReport> deleteColumn(@PathVariable Long id, @PathVariable Long columnId) {
+        log.info("Удаление колонки с ID: {}",columnId);
+        return ResponseEntity.ok(tableFacade.deleteColumn(columnId));
     }
 
 }

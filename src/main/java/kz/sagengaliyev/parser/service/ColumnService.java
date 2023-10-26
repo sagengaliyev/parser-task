@@ -20,4 +20,10 @@ public class ColumnService {
     public ColumnEntity findById(Long columnId) {
         return columnRepository.findById(columnId).orElseThrow();
     }
+
+    public void delete(Long id) {
+        ColumnEntity deletedColumn = findById(id);
+        deletedColumn.setDeleted(true);
+        columnRepository.save(deletedColumn);
+    }
 }

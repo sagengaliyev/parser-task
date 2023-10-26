@@ -29,11 +29,11 @@ public interface TableFacade {
 
     /**
      * Метод для вывода всех таблиц
-     * @param size
-     * @param page
+     * @param pageNumber
+     * @param pageSize
      * @return
      */
-    PageDTO<TableDTO> findAll(Integer size, Integer page);
+    PageDTO<TableDTO> findAll(Integer pageNumber, Integer pageSize);
 
     /**
      * Метод для поиска таблицы по ID
@@ -58,4 +58,18 @@ public interface TableFacade {
      * @return
      */
     ProcedureReport updateColumn(Long id, Long columnId, UpdateColumnRequest dto);
+
+    /**
+     * Удалить таблицу
+     * @param id
+     * @return
+     */
+    ProcedureReport deleteTable(Long id);
+
+    /**
+     * Удалить колонку
+     * @param id
+     * @return
+     */
+    ProcedureReport deleteColumn(Long id);
 }
